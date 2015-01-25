@@ -1,16 +1,16 @@
 package net.ws.restfile;
 
 import javax.servlet.http.*;
-/*import javax.ws.rs.GET;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Response;*/
+import javax.ws.rs.core.Response;
 import java.io.*;
 import javax.servlet.*;
 
-//@Path("/hello")
+@Path("/hello")
 public class RestService extends HttpServlet {
-	/*@GET
+	@GET
 	@Path("/{param}")
 	public Response getMsg(@PathParam("param") String msg) {
  
@@ -18,8 +18,8 @@ public class RestService extends HttpServlet {
  
 		return Response.status(200).entity(output).build();
  
-	}*/
-	public void doGet(HttpServletRequest request,
+	}
+	/*public void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 			throws ServletException, IOException {
 			
@@ -27,6 +27,6 @@ public class RestService extends HttpServlet {
 			out.println( "Check the servlet\n" );
 			out.flush();
 			out.close();
-			 }
+			 }*/
 	 
 }
