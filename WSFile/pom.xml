@@ -49,21 +49,36 @@
   </dependency>
   <!--Google part-->
   <dependency>
-    <groupId>com.google.apis</groupId>
-    <artifactId>google-api-services-drive</artifactId>
-    <version>v2-rev65-1.13.2-beta</version>
+    <groupId>com.google.api-client</groupId>
+    <artifactId>google-api-client</artifactId>
+    <version>1.18.0-rc</version>
+  </dependency>
+  <dependency>
+    <groupId>com.google.http-client</groupId>
+    <artifactId>google-http-client-jackson</artifactId>
+    <version>1.15.0-rc</version>
+  </dependency>
+  <dependency>
+    <groupId>com.google.api-client</groupId>
+    <artifactId>google-api-client-gson</artifactId>
+    <version>1.18.0-rc</version>
   </dependency>
   <dependency>
     <groupId>com.google.apis</groupId>
     <artifactId>google-api-services-oauth2</artifactId>
-    <version>v2-rev84-1.19.1</version>
+    <version>v2-rev74-1.18.0-rc</version>
   </dependency>
   <dependency>
-    <groupId>com.google.http-client</groupId>
-    <artifactId>google-http-client-jackson2</artifactId>
-    <version>1.19.0</version>
+    <groupId>com.google.apis</groupId>
+    <artifactId>google-api-services-drive</artifactId>
+    <version>v2-rev160-1.19.1</version>
   </dependency>
-<!--Other part-->
+  <dependency>
+    <groupId>com.google.api-client</groupId>
+    <artifactId>google-api-client-appengine</artifactId>
+    <version>1.7.0-beta</version>
+  </dependency>
+  <!--Other part-->
   <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>servlet-api</artifactId>
@@ -95,6 +110,30 @@
     <artifactId>jetty-maven-plugin</artifactId>
     <version>9.2.7.v20150116</version>
   </plugin>
+  <plugin>
+   <groupId>org.codehaus.mojo</groupId>
+   <artifactId>exec-maven-plugin</artifactId>
+   <executions>
+    <execution>
+      <goals>
+        <goal>exec</goal>
+      </goals>
+    </execution>
+  </executions>
+  <configuration>
+    <executable>java</executable>
+    <arguments>
+      <argument>-classpath</argument>
+      <classpath />
+      <argument>
+        -Dcom.sun.xml.ws.transport.http.client.HttpTransportPipe.dump=true
+      </argument>
+      <argument>
+        net.ws.service.GoogleService
+      </argument>
+    </arguments>
+  </configuration>
+</plugin>
 </plugins>
 </build>
 </project>
