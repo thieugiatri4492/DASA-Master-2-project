@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
@@ -50,3 +51,69 @@
 	<classpathentry kind="lib" path="target/WSFile/WEB-INF/lib/google-api-services-drive-v2-rev160-1.19.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="var" path="M2_REPO/javax/ws/rs/javax.ws.rs-api/2.0.1/javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/annotation/javax.annotation-api/1.2/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/containers/jersey-container-servlet/2.15/jersey-container-servlet-2.15.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/containers/jersey-container-servlet-core/2.15/jersey-container-servlet-core-2.15.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/external/javax.inject/2.4.0-b06/javax.inject-2.4.0-b06.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/core/jersey-common/2.15/jersey-common-2.15.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/bundles/repackaged/jersey-guava/2.15/jersey-guava-2.15.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/hk2-api/2.4.0-b06/hk2-api-2.4.0-b06.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/hk2-utils/2.4.0-b06/hk2-utils-2.4.0-b06.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/external/aopalliance-repackaged/2.4.0-b06/aopalliance-repackaged-2.4.0-b06.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/hk2-locator/2.4.0-b06/hk2-locator-2.4.0-b06.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/hk2/osgi-resource-locator/1.0.1/osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/core/jersey-server/2.15/jersey-server-2.15.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/glassfish/jersey/core/jersey-client/2.15/jersey-client-2.15.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-servlet/9.2.7.v20150116/jetty-servlet-9.2.7.v20150116.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-security/9.2.7.v20150116/jetty-security-9.2.7.v20150116.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-server/9.2.7.v20150116/jetty-server-9.2.7.v20150116.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-http/9.2.7.v20150116/jetty-http-9.2.7.v20150116.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-util/9.2.7.v20150116/jetty-util-9.2.7.v20150116.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-io/9.2.7.v20150116/jetty-io-9.2.7.v20150116.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-webapp/9.2.7.v20150116/jetty-webapp-9.2.7.v20150116.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/eclipse/jetty/jetty-xml/9.2.7.v20150116/jetty-xml-9.2.7.v20150116.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/aopalliance-repackaged-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/commons-codec-1.3.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/google-api-client-1.13.2-beta.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/google-api-services-drive-v2-rev65-1.13.2-beta.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/google-api-services-oauth2-v2-rev84-1.19.1.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/google-http-client-1.19.0.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/google-http-client-jackson2-1.19.0.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/google-oauth-client-1.13.1-beta.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/jersey-guava-2.15.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/guava-jdk5-13.0.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/hk2-api-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/hk2-locator-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/hk2-utils-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/httpclient-4.0.1.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/httpcore-4.0.1.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/jackson-core-2.1.3.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/javassist-3.18.1-GA.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/javax.inject-2.4.0-b06.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/jersey-client-2.15.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/jersey-common-2.15.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/jersey-container-servlet-2.15.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/jersey-container-servlet-core-2.15.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/jersey-server-2.15.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/jsr305-1.3.9.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="lib" path="E:/DASA/Project/WSFile/target/WSFile/WEB-INF/lib/validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
+>>>>>>> origin/master
