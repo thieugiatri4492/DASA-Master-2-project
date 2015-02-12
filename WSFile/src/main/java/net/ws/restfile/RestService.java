@@ -25,8 +25,10 @@ public class RestService extends HttpServlet {
 	@POST
 	@Path("/login")
 	public void login(@FormParam("username") String username, @FormParam("password") String password, @Context HttpServletResponse response) throws IOException	{
+		String output = "Username = "+username +" <br/> Password = " +password;
 		
-		response.sendRedirect("../file-manager.html");
+		response.sendRedirect("/file-manager.html");
+		//return Response.status(200).entity(output).build();
 	}
 	
 	/*
