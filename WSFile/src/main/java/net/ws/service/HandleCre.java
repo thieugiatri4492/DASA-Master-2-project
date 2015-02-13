@@ -73,6 +73,7 @@ public class HandleCre extends HttpServlet{
 			HttpServletResponse resp) {
 		String userId = (String) req.getSession().getAttribute(KEY_SESSION_USERID);
 		if (userId != null) {
+			System.out.println("return succes");
 			return credentialManager.get(userId);
 		}
 		return null;
@@ -92,9 +93,11 @@ public class HandleCre extends HttpServlet{
 	protected void handleCallbackIfRequired(HttpServletRequest req,
 			HttpServletResponse resp) throws IOException {
 		String code = req.getParameter("code");
+		System.out.println(code);
 		if (code != null) {
 			// retrieve new credentials with code
 			Credential credential = credentialManager.retrieve(code);
+			
 			// request userinfo
 			Oauth2 service = getOauth2Service(credential);
 			try {
@@ -102,12 +105,15 @@ public class HandleCre extends HttpServlet{
 				String id = about.getId();
 				credentialManager.save(id, credential);
 				req.getSession().setAttribute(KEY_SESSION_USERID, id);
+				 resp.sendRedirect("/file");
 			} catch (IOException e) {
 				throw new RuntimeException("Can't handle the OAuth2 callback, " + 
 						"make sure that code is valid.");
 			}
-			resp.sendRedirect("/");
+		} else {
+			resp.sendRedirect("/auth/login");
 		}
+		
 	}
 	protected Oauth2 getOauth2Service(Credential credential) {
 		return new Oauth2.Builder(TRANSPORT, JSON_FACTORY, credential).build();
