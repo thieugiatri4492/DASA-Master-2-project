@@ -46,8 +46,7 @@ public class JSonHandle {
 		 String token=null;
 		 try {
 			  
-	            Object obj = parser.parse(new FileReader(
-	            		".\\src\\main\\webapp\\WEB-INF\\"+Filename));
+	            Object obj = parser.parse(new FileReader(Filename));
 	            JSONObject jsonObject = (JSONObject) obj;
 	            token = (String) jsonObject.get("access_token");
 	 

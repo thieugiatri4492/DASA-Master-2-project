@@ -7,6 +7,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.ws.data.JSonHandle;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -16,8 +18,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
-import net.ws.data.JSonHandle;
 
 public class FileServlet extends HandleCre {
 	 private HttpClient  client = new DefaultHttpClient();
@@ -36,22 +36,20 @@ public class FileServlet extends HandleCre {
         post.setEntity(new UrlEncodedFormEntity(pairs));
         org.apache.http.HttpResponse response = client.execute(post);
         String responseBody = EntityUtils.toString(response.getEntity());
-        
         this.json = new JSonHandle();
         this.json.writeJson(responseBody, "src/main/webapp/WEB-INF/token.json");
         
-        System.out.println(responseBody);
+       
 	}
 	public void geFileList () throws ClientProtocolException, IOException{
 		
 		 this.json = new JSonHandle();
-	     String token =this.json.readJson("token.json");
+	     String token =this.json.readJson("src/main/webapp/WEB-INF/token.json");
 		HttpGet request= new HttpGet("https://www.googleapis.com/drive/v2/files");
         request.setHeader("Authorization", "Bearer "+token);
         org.apache.http.HttpResponse respo=client.execute(request);
         String therespond = EntityUtils.toString(respo.getEntity());
        this.json.writeJson(therespond, "src/main/webapp/WEB-INF/File-Info/filegoogle.json");
-        System.out.println(therespond);
 	}
 	
 	@Override
