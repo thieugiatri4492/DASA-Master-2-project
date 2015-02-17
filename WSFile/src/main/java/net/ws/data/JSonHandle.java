@@ -41,7 +41,7 @@ public class JSonHandle {
 		}
 	}
 	@SuppressWarnings("unchecked")
-	public String readJson (String Filename){
+	public String readJsonToken (String Filename){
 		 JSONParser parser = new JSONParser();
 		 String token=null;
 		 try {

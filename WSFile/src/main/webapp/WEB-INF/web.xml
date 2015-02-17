@@ -9,7 +9,7 @@
    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
    <init-param>
     <param-name>jersey.config.server.provider.packages</param-name>
-    <param-value>net.ws.restfile</param-value>
+    <param-value>net.ws.service</param-value>
   </init-param>
   <load-on-startup>1</load-on-startup>
 </servlet>
@@ -32,5 +32,13 @@
 <servlet-mapping>
   <servlet-name>FileServlet</servlet-name>
   <url-pattern>/file</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>FileDropbox</servlet-name>
+  <servlet-class>net.ws.service.FileDropbox</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>FileDropbox</servlet-name>
+  <url-pattern>/filedropbox</url-pattern>
 </servlet-mapping>
 </web-app>

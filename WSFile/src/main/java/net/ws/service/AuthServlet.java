@@ -10,10 +10,16 @@ public class AuthServlet extends HandleCre {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
+		System.out.println(req.getRequestURL());
+		System.out.println(req.getRequestURI());
+		System.out.println(req);
 		 if(req.getRequestURI().equals("/auth/file")){
              handleCallbackIfRequired(req, resp);
           }else if(req.getRequestURI().equals("/auth/login")){
              loginIfRequired(req, resp);
+          }
+          else{
+        	  System.out.println("Not right");
           }
 
 	}
