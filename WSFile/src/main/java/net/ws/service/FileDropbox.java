@@ -57,21 +57,35 @@ public class FileDropbox extends HttpServlet {
 			this.json = new JSonHandle();
 			 token = this.json
 					.readJsonToken("src/main/webapp/WEB-INF/token2.json");
-			 List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+			/* List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 			 	pairs.add(new BasicNameValuePair("file_limit", "10000"));
 				pairs.add(new BasicNameValuePair("list", "true"));
-				System.out.println("https://api.dropbox.com/1/metadata/auto/?"+URLEncodedUtils.format(pairs, "utf-8"));
-			this.getter = new HttpGet("https://api.dropbox.com/1/metadata/auto/?"+URLEncodedUtils.format(pairs, "utf-8"));
+				System.out.println("https://api.dropbox.com/1/metadata/auto/?"+URLEncodedUtils.format(pairs, "utf-8"));*/
+			/*this.getter = new HttpGet("https://api.dropbox.com/1/metadata/auto/?"+URLEncodedUtils.format(pairs, "utf-8"));
 			this.getter.setHeader("Authorization", "Bearer " + token);
 			org.apache.http.HttpResponse respo = client.execute(this.getter);
 			this.therespond = EntityUtils.toString(respo.getEntity());
 			this.json.writeJson(this.therespond,
-					"src/main/webapp/filedropbox.json");
+					"src/main/webapp/filedropbox.json");*/
+				this.poster = new HttpPost("https://api.dropbox.com/1/delta");
+				this.poster.setHeader("Authorization", "Bearer " + token);
+				//this.poster.setEntity(new UrlEncodedFormEntity(pairs));
+				org.apache.http.HttpResponse response = client.execute(this.poster);
+				this.therespond = EntityUtils.toString(response.getEntity());
+				this.json.writeJson(this.therespond,
+						"src/main/webapp/filedropbox.json");
+				System.out.println(this.therespond);
+		 
 			
+		}
+		@Override
+		public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+			this.geFileList();
 		}
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ClientProtocolException, IOException{
 		this.exchangeToken(req);
-		this.geFileList();
+		//this.geFileList();
+		doPost(req,resp);
 	}
 }
