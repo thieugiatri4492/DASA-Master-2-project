@@ -1,37 +1,51 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>File Management</title>
+<script type="text/javascript" src="simpletreemenu.js">
+	
+</script>
 
-  <meta charset="UTF-8">
-
-  <title>CodePen - Log-in</title>
-
-  <link rel='stylesheet' href='http://codepen.io/assets/libs/fullpage/jquery-ui.css'>
-
-    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
-
+<link rel="stylesheet" type="text/css" href="simpletree.css" />
 </head>
-
-<body>
-
-  <div class="login-card">
-    <h1>Log-in</h1><br>
-  <form action="/servlet/action/login" method="POST">
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" name="login" class="login login-submit" value="login">
-  </form>
-
-  <div class="login-help">
-    <a href="#">Register</a> • <a href="#">Forgot Password</a>
-  </div>
-</div>
-
-<!-- <div id="error"><img src="https://dl.dropboxusercontent.com/u/23299152/Delete-icon.png" /> Your caps-lock is on.</div> -->
-
-  <script src='http://codepen.io/assets/libs/fullpage/jquery_and_jqueryui.js'></script>
-
+<body onload="readTextFile('filegoogle.json');">
+	<div id="content">
+		<ul id="treemenu" class="treeview">
+		</ul>
+	</div>
+	<script type="text/javascript">
+		function readTextFile(file) {
+			var rawFile = new XMLHttpRequest();
+			rawFile.open("GET", file, false);
+			rawFile.onreadystatechange = function() {
+				if (rawFile.readyState === 4) {
+					if (rawFile.status === 200 || rawFile.status == 0) {
+						var allText = rawFile.responseText;
+						readJSON(allText);
+					}
+				}
+			}
+			rawFile.send(null);
+		}
+		
+		function readJSON(data) {
+			var json = JSON.parse(data);
+			var listitem = json.items;
+			var content='';
+			
+			var index = 0;
+			var len=listitem.length;
+			for (index = 0; index < len; ++index) {
+				//alert(listitem[index].parents["isRoot"]);
+			}
+			document.getElementById("treemenu").innerHTML = content;
+		}
+		
+		ddtreemenu.createTree("treemenu", false);
+	</script>
 </body>
 
 </html>

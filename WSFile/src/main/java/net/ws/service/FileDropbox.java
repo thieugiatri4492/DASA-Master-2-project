@@ -81,6 +81,7 @@ public class FileDropbox extends HttpServlet {
 		@Override
 		public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 			this.geFileList();
+			resp.sendRedirect("index.html");
 		}
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ClientProtocolException, IOException{

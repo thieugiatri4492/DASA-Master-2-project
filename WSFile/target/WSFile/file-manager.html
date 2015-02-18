@@ -3,85 +3,55 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<title>jQuery File Tree Demo</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>File Management</title>
+<script type="text/javascript" src="simpletreemenu.js">
+	
+</script>
 
-<style type="text/css">
-BODY, HTML {
-	padding: 0px;
-	margin: 0px;
-}
-
-BODY {
-	background:
-		url(https://dl.dropboxusercontent.com/u/23299152/Wallpapers/wallpaper-22705.jpg)
-		no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	font-family: 'Roboto', sans-serif;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 11px;
-}
-
-H1 {
-	font-family: Georgia, serif;
-	font-size: 20px;
-	font-weight: normal;
-}
-
-H2 {
-	font-family: Georgia, serif;
-	font-size: 16px;
-	font-weight: normal;
-	margin: 0px 0px 10px 0px;
-}
-
-.example {
-	float: left;
-	margin: 15px;
-}
-
-.demo {
-	width: 800px;
-	height: 400px;
-	border-top: solid 1px #BBB;
-	border-left: solid 1px #BBB;
-	border-bottom: solid 1px #FFF;
-	border-right: solid 1px #FFF;
-	background: #FFF;
-	overflow: scroll;
-	padding: 5px;
-}
-</style>
-
-<script src="jquery.js" type="text/javascript"></script>
-<script src="jquery.easing.js" type="text/javascript"></script>
-<script src="jqueryFileTree.js" type="text/javascript"></script>
-<link href="jqueryFileTree.css" rel="stylesheet" type="text/css"
-	media="screen" />
-
-<script type="text/javascript">
-			$(document).ready( function() {
-				$('#fileTreeDemo_1').fileTree({ root: '../../demo/', script: 'connectors/jqueryFileTree.jsp' }, function(file) { 
-					alert(file);
-				});							
-			});
-		</script>
-
+<link rel="stylesheet" type="text/css" href="simpletree.css" />
 </head>
-
-<body>
-
-	<h1>Hello World</h1>
-	<p>Feel free to view the source code of this page to see how the
-		file tree is being implemented.</p>
-
-	<div class="example">
-		<h2>Default options</h2>
-		<div id="fileTreeDemo_1" class="demo"></div>
+<body onload="readTextFile('filegoogle.json');">
+	<div id="content">
+		<ul id="treemenu" class="treeview">
+		</ul>
 	</div>
+	<script type="text/javascript">
+		function readTextFile(file) {
+			var rawFile = new XMLHttpRequest();
+			rawFile.open("GET", file, false);
+			rawFile.onreadystatechange = function() {
+				if (rawFile.readyState === 4) {
+					if (rawFile.status === 200 || rawFile.status == 0) {
+						var allText = rawFile.responseText;
+						readJSON(allText);
+					}
+				}
+			}
+			rawFile.send(null);
+		}
+		
+		function readJSON(data) {
+			var json = JSON.parse(data);
+			var listitem = json.items;
+			var content='';
+			
+			var index = 0;
+			var len=listitem.length;
+			for (index = 0; index < len; ++index) {
+				if (listitem[index].parents.isRoot){
+					if (listitem[index].mimeType == "application/vnd.google-apps.folder"){
+						content = content + '<li>' + listitem[index].title + '<ul></ul></li>';
+					}
+					else {
+				    	content = content + '<li>' + listitem[index].title + '</li>';
+					}
+				}
+			}
+			document.getElementById("treemenu").innerHTML = content;
+		}
+		ddtreemenu.createTree("treemenu", false);
+	</script>
 </body>
 
 </html>

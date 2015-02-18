@@ -111,9 +111,7 @@ public class FileServlet extends HandleCre {
 			throws IOException {
 		this.exchangeToken(req);
 		this.geFileList();
-		this.openFile("0BwtjpqoMxwEOdnp3N2RNcHhlcmM");
-		System.out.println(req.getRequestURI());
-
+		resp.sendRedirect("index.html");
 	}
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException{
