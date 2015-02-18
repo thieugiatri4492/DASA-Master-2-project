@@ -11,40 +11,152 @@
 
 <link rel="stylesheet" type="text/css" href="simpletree.css" />
 </head>
-<body onload="readTextFile('filegoogle.json');">
+<body onload="readJSONFile();">
+
+	<a href="/auth/login"><img src="google-btn.png"/></a>
+	<a href="/servlet/action/oath2/filedropbox"><img src="dropbox-btn.png"/></a>
 	<div id="content">
 		<ul id="treemenu" class="treeview">
 		</ul>
 	</div>
 	<script type="text/javascript">
-		function readTextFile(file) {
+		var view = "";
+		function readJSONFile() {
+			document.getElementById("treemenu").innerHTML = "";		
+			readGoogleDriveFile('filegoogle.json');
+			readDropBoxFile('filedropbox.json');
+			document.getElementById("treemenu").innerHTML = view;
+			ddtreemenu.createTree("treemenu", false);
+		}
+
+		function readGoogleDriveFile(file) {
 			var rawFile = new XMLHttpRequest();
 			rawFile.open("GET", file, false);
 			rawFile.onreadystatechange = function() {
 				if (rawFile.readyState === 4) {
 					if (rawFile.status === 200 || rawFile.status == 0) {
 						var allText = rawFile.responseText;
-						readJSON(allText);
+						readGoogleDriveJSON(allText);
 					}
 				}
 			}
 			rawFile.send(null);
 		}
-		
-		function readJSON(data) {
+
+		function readGoogleDriveJSON(data) {
 			var json = JSON.parse(data);
 			var listitem = json.items;
-			var content='';
-			
+			var content = '';
+
 			var index = 0;
-			var len=listitem.length;
+			var len = listitem.length;
 			for (index = 0; index < len; ++index) {
-				//alert(listitem[index].parents["isRoot"]);
+				if (listitem[index].parents[0] != null) {
+					if (listitem[index].parents[0].isRoot) {
+						if (listitem[index].mimeType == "application/vnd.google-apps.folder") {
+							content = content
+									+ '<li>'
+									+ listitem[index].title
+									+ '<ul>'
+									+ getGoogleDriveChildrens(
+											listitem[index].id, listitem)
+									+ '</ul>' + '</li>';
+						} else {
+							content = content + '<li>' + listitem[index].title + " -- google drive" 
+									+ '</li>';
+						}
+					}
+				}
 			}
-			document.getElementById("treemenu").innerHTML = content;
+			//document.getElementById("treemenu").innerHTML = content;
+			view = content;
+			//ddtreemenu.createTree("treemenu", false);
+		}
+
+		function getGoogleDriveChildrens(id, listitem) {
+			var content = "";
+			var len = listitem.length;
+			for (index = 0; index < len; ++index) {
+				if (listitem[index].parents[0] != null) {
+					if (listitem[index].parents[0].id == id) {
+						if (listitem[index].mimeType == "application/vnd.google-apps.folder") {
+							content = content
+									+ '<li>'
+									+ listitem[index].title
+									+ '<ul>'
+									+ getGoogleDriveChildrens(
+											listitem[index].id, listitem)
+									+ '</ul>' + '</li>';
+						} else {
+							content = content + '<li>' + listitem[index].title + " -- google drive" 
+									+ '</li>';
+						}
+					}
+				}
+			}
+			return content;
 		}
 		
-		ddtreemenu.createTree("treemenu", false);
+		function readDropBoxFile(file) {
+			var rawFile = new XMLHttpRequest();
+			rawFile.open("GET", file, false);
+			rawFile.onreadystatechange = function() {
+				if (rawFile.readyState === 4) {
+					if (rawFile.status === 200 || rawFile.status == 0) {
+						var allText = rawFile.responseText;
+						readDropBoxJSON(allText);
+					}
+				}
+			}
+			rawFile.send(null);	
+		}
+		
+		function readDropBoxJSON(data) {
+			var json = JSON.parse(data);
+			var listitem = json.entries;
+			var content = '';
+			var index = 0;
+			var len = listitem.length;
+			for (index = 0; index < len; ++index) {
+				if (getParent(listitem[index][0]) == ""){
+					if (listitem[index][1].is_dir){
+						content = content + '<li>' + getFileName(listitem[index][0]) +'<ul>' + getDropBoxChildrens(listitem[index][0],listitem) + '</ul></li>';
+					}
+					else {
+						content = content + '<li>' + getFileName(listitem[index][0]) + ' -- dropbox' + '</li>';
+					}
+				}
+				
+			}
+			//document.getElementById("treemenu").innerHTML = content;
+			view = view + content;
+			//ddtreemenu.createTree("treemenu", false);
+		}
+
+		function getDropBoxChildrens(parent, listitem) {
+			var content = "";
+			var len = listitem.length;
+			for (index = 0; index < len; ++index) {
+				if (getParent(listitem[index][0]) == parent){
+					if (listitem[index][1].is_dir){					
+						content = content + '<li>' + getFileName(listitem[index][0]) + '<ul>' + getDropBoxChildrens(listitem[index][0],listitem) + '</ul></li>';
+					}
+					else {
+						content = content + '<li>' + getFileName(listitem[index][0]) + ' -- dropbox' + '</li>';
+					}
+				}
+			}
+			return content;
+		}
+		
+		function getParent(name){
+			return name.slice(0,name.lastIndexOf(getFileName(name))-1);
+		}
+		
+		function getFileName(name){
+			return name.substring(name.lastIndexOf('/')+1,name.length);
+		}
+		
 	</script>
 </body>
 

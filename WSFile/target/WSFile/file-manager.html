@@ -39,14 +39,7 @@
 			var index = 0;
 			var len=listitem.length;
 			for (index = 0; index < len; ++index) {
-				if (listitem[index].parents.isRoot){
-					if (listitem[index].mimeType == "application/vnd.google-apps.folder"){
-						content = content + '<li>' + listitem[index].title + '<ul></ul></li>';
-					}
-					else {
-				    	content = content + '<li>' + listitem[index].title + '</li>';
-					}
-				}
+					content = content + '<li>' + listitem[index].parents[0].isRoot + '</li>';				
 			}
 			document.getElementById("treemenu").innerHTML = content;
 		}
