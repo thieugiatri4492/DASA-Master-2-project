@@ -31,7 +31,7 @@ public class RestService extends HandleCre {
 	@GET
 	@Path("/oath2/{param}")
 	public Response dropbox(@Context HttpServletRequest req,@Context HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher disp = req.getRequestDispatcher("/filedropbox");
+		RequestDispatcher disp = req.getRequestDispatcher("/authdropbox");
 	       disp.forward(req, resp);
 	       return null;
 	}

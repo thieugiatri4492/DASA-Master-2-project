@@ -9,11 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.ws.data.JSonHandle;
+
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -26,28 +29,49 @@ public class FileDropbox extends HttpServlet {
 		private HttpGet getter;
 		private HttpPost poster;
 		private HttpClient client = new DefaultHttpClient();
-		
-	public void authentication() throws ClientProtocolException, IOException{
-		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		pairs.add(new BasicNameValuePair("response_type", "code"));
-		pairs.add(new BasicNameValuePair("client_id","3nixhm6sjqf9aoy"));
-		String url = "https://www.dropbox.com/1/oauth2/authorize?"+URLEncodedUtils.format(pairs, "utf-8");
-		getter = new HttpGet(url);
-		getter.getParams().setParameter(CookieSpecPNames.DATE_PATTERNS, Arrays.asList("EEE, d MMM yyyy HH:mm:ss z"));
-		System.out.println(url);
-		HttpResponse theresp=client.execute(getter);
-		Header[] headers = theresp.getAllHeaders();
-		for (Header header : headers) {
-			System.out.println("Key : " + header.getName() 
-			      + " ,Value : " + header.getValue());
+		private String therespond;
+		private JSonHandle json;
+		private String token;
+		public void exchangeToken(HttpServletRequest req)
+				throws ClientProtocolException, IOException {
+			this.poster = new HttpPost("https://api.dropbox.com/1/oauth2/token");
+			List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+			pairs.add(new BasicNameValuePair("code", req.getParameter("code")));
+			pairs.add(new BasicNameValuePair("client_id",
+					"3nixhm6sjqf9aoy"));
+			pairs.add(new BasicNameValuePair("client_secret",
+					"ohjlad9lmkqw6zs"));
+			pairs.add(new BasicNameValuePair("redirect_uri",
+					"http://localhost:8080/filedropbox"));
+			pairs.add(new BasicNameValuePair("grant_type", "authorization_code"));
+			this.poster.setEntity(new UrlEncodedFormEntity(pairs));
+			org.apache.http.HttpResponse response = client.execute(this.poster);
+			this.therespond = EntityUtils.toString(response.getEntity());
+			this.json = new JSonHandle();
+			this.json.writeJson(this.therespond,
+					"src/main/webapp/WEB-INF/token2.json");
+
 		}
-		/*HttpResponse theresp=client.execute(getter);
-		String answer = EntityUtils.toString(theresp.getEntity());
-		System.out.println(answer);*/
-		System.out.println("This is dropbox");
-	}
+		public void geFileList() throws ClientProtocolException, IOException {
+
+			this.json = new JSonHandle();
+			 token = this.json
+					.readJsonToken("src/main/webapp/WEB-INF/token2.json");
+			 List<NameValuePair> pairs = new ArrayList<NameValuePair>();
+			 	pairs.add(new BasicNameValuePair("file_limit", "1000"));
+				pairs.add(new BasicNameValuePair("list", "true"));
+				System.out.println("https://api.dropbox.com/1/metadata/auto/?"+URLEncodedUtils.format(pairs, "utf-8"));
+			this.getter = new HttpGet("https://api.dropbox.com/1/metadata/auto/?"+URLEncodedUtils.format(pairs, "utf-8"));
+			this.getter.setHeader("Authorization", "Bearer " + token);
+			org.apache.http.HttpResponse respo = client.execute(this.getter);
+			this.therespond = EntityUtils.toString(respo.getEntity());
+			this.json.writeJson(this.therespond,
+					"src/main/webapp/filedropbox.json");
+			
+		}
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ClientProtocolException, IOException{
-		this.authentication();
+		this.exchangeToken(req);
+		this.geFileList();
 	}
 }

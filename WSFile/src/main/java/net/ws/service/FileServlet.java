@@ -62,7 +62,7 @@ public class FileServlet extends HandleCre {
 		org.apache.http.HttpResponse respo = client.execute(this.getter);
 		this.therespond = EntityUtils.toString(respo.getEntity());
 		this.json.writeJson(this.therespond,
-				"src/main/webapp/File-Info/filegoogle.json");
+				"src/main/webapp/filegoogle.json");
 		
 	}
 

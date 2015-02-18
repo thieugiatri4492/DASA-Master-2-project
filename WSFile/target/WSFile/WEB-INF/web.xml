@@ -34,6 +34,14 @@
   <url-pattern>/file</url-pattern>
 </servlet-mapping>
 <servlet>
+  <servlet-name>AuthDropbox</servlet-name>
+  <servlet-class>net.ws.service.AuthDropbox</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>AuthDropbox</servlet-name>
+  <url-pattern>/authdropbox</url-pattern>
+</servlet-mapping>
+<servlet>
   <servlet-name>FileDropbox</servlet-name>
   <servlet-class>net.ws.service.FileDropbox</servlet-class>
 </servlet>
