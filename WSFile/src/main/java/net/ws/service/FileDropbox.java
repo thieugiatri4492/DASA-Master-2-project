@@ -58,7 +58,7 @@ public class FileDropbox extends HttpServlet {
 			 token = this.json
 					.readJsonToken("src/main/webapp/WEB-INF/token2.json");
 			 List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-			 	pairs.add(new BasicNameValuePair("file_limit", "1000"));
+			 	pairs.add(new BasicNameValuePair("file_limit", "10000"));
 				pairs.add(new BasicNameValuePair("list", "true"));
 				System.out.println("https://api.dropbox.com/1/metadata/auto/?"+URLEncodedUtils.format(pairs, "utf-8"));
 			this.getter = new HttpGet("https://api.dropbox.com/1/metadata/auto/?"+URLEncodedUtils.format(pairs, "utf-8"));
